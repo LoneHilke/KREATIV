@@ -9,6 +9,7 @@
     <title>Perler</title>
     <link rel="stylesheet" href="{% static 'meetups/styles/base.css' %}">
     <link rel="stylesheet" href="{% static 'meetups/styles/all-meetups.css' %}">
+    
 </head>
 <body>
     <header id="main-header">
@@ -32,7 +33,7 @@
                             </div>
                         </div>
                         <div class="meetup-actions">
-                            <a href="" class="btn">Læs mere</a>
+                            <a href="/meetups/{{ meetup_item.slug }}" class="btn">Læs mere</a>
                         </div>
                     </article>
                 </li>
