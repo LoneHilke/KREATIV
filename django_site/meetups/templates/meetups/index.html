@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perler</title>
+    <link rel="stylesheet" href="{% static 'meetups/styles/base.css' %}">
+    <link rel="stylesheet" href="{% static 'meetups/styles/all-meetups.css' %}">
+</head>
+<body>
+    <header id="main-header">
+        <nav><a href="/meetups/" id="main-logo">KREATIV MED PERLER</a></nav>
+        <h1>Her kommer flere ideer </h1>
+        <p>Håber der er til nogler timers sjov</p>
+    </header>
+    <main>
+        <h2>Nyheder på vej</h2>
+        <ol>
+            {% for meetup_item in meetups %}
+                <li class="meetup-item">
+                    <article>
+                        <div class="meetup-summary">
+                            <div class="meetup-image">
+                                <img src="" alt="">
+                            </div>
+                            <div class="meetup-details">
+                                <h3>{{ meetup_item.title }}</h3>
+                                <address>{{ meetup_item.location }}</address>
+                            </div>
+                        </div>
+                        <div class="meetup-actions">
+                            <a href="" class="btn">Læs mere</a>
+                        </div>
+                    </article>
+                </li>
+            {% endfor %}
+        </ol>
+    </main>
+</body>
+</html>
