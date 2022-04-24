@@ -1,24 +1,25 @@
+{% extends 'meetups/base/base.html' %}
+
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perler</title>
-    <link rel="stylesheet" href="{% static 'meetups/styles/base.css' %}">
-    <link rel="stylesheet" href="{% static 'meetups/styles/all-meetups.css' %}">
+{% block title %}Perler{% endblock %}
     
-</head>
-<body>
-    <header id="main-header">
-        <nav><a href="/meetups/" id="main-logo">KREATIV MED PERLER</a></nav>
-        <h1>Her kommer flere ideer </h1>
-        <p>Håber der er til nogler timers sjov</p>
-    </header>
-    <main>
-        <h2>Nyheder på vej</h2>
+{% block site_css %}
+    <link rel="stylesheet" href="{% static 'meetups/styles/all-meetups.css' %}">
+{% endblock %} 
+
+
+{% block main_heading %}
+Her kommer flere ideer
+{% endblock %}
+
+{% block header_content %}
+<p>Håber der er til nogler timers sjov</p>
+{% endblock %}
+
+{% block body %}
+<section>
+    <h2>Nyheder på vej</h2>
         <ol>
             {% for meetup_item in meetups %}
                 <li class="meetup-item">
@@ -33,12 +34,12 @@
                             </div>
                         </div>
                         <div class="meetup-actions">
-                            <a href="/meetups/{{ meetup_item.slug }}" class="btn">Læs mere</a>
+                            <a href="{% url 'meetup-detail' meetup_item.slug %}" class="btn">Læs mere</a>
                         </div>
                     </article>
                 </li>
             {% endfor %}
         </ol>
-    </main>
-</body>
-</html>
+</section>
+{% endblock %}
+    
