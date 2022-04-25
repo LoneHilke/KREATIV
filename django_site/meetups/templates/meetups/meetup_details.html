@@ -27,10 +27,10 @@
         <h2>Denne side er om...</h2>
         <p>{{ meetup_description }}</p>
         <footer>
-            <p>for flere detaljer... <a href="">Kontakt os</a>, men kun seriøse henvendelser</p>
+            <p>for flere detaljer... <a href="mailto:{{ meetup.organizer_email }}">Kontakt os</a>, men kun seriøse henvendelser</p>
         </footer>
     </section>
-    <section id="Registrering">
+    <section id="registation">
         <h2>Mød os</h2>
         <form action="{% url 'meetup-detail' meetup.slug %}" method="POST">
             {% csrf_token %}
