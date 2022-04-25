@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block main_heading %}
-    {{ meetup_title }}
+    {{ meetup.title }}
 {% endblock %}
 
 {% block body %}
@@ -23,9 +23,10 @@
         <h2>Meetup Location</h2>
         <address>på denne side bruger vi..<span>{{ meetup.location.name }}</span> ({{ meetup.location.address }}).</address>
     </section>
+
     <section id="Læs mere">
         <h2>Denne side er om...</h2>
-        <p>{{ meetup_description }}</p>
+        <p>{{ meetup.description }}</p>
         <footer>
             <p>for flere detaljer... <a href="mailto:{{ meetup.organizer_email }}">Kontakt os</a>, men kun seriøse henvendelser</p>
         </footer>
