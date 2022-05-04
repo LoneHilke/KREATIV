@@ -26,6 +26,8 @@ class Meetup(models.Model):
     image = models.ImageField(upload_to='images')
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     participants = models.ManyToManyField(Participant, blank=True)
+    materialer = models.TextField()
+    alder = models.TextField()
 
     
 
