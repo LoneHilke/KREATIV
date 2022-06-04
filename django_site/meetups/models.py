@@ -28,7 +28,7 @@ class Meetup(models.Model):
     participants = models.ManyToManyField(Participant, blank=True)
     materialer = models.TextField()
     alder = models.TextField()
-
+    #link= models.URLField(max_length=200, blank=True)
     
 
     def __str__(self):
