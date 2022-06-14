@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import django_heroku
 from pathlib import Path
 from environ import Env
+import urllib.parse as up
+import psycopg2
+import dj_database_url
+
 
 env = Env()
 env.read_env()
@@ -83,11 +87,12 @@ WSGI_APPLICATION = 'django_site.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env("NAME"),
+        'NAME': env("LMH"),
         "USER": env("Kreativ"),
         "PASSWORD": env("19lone72"), 
         "HOST": env("DATABASE_HOST"),
         "PORT": 5432,
+        'CONN_MAX_AGE': 500,
     }
 }
 
@@ -136,12 +141,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = BASE_DIR / 'uploads'
 MEDIA_URL = '/files/'
 
+DATABASE_URL = os.environ['https://data.heroku.com/dataclips/sfhsmtycorkbturcbfugalwwdqpo']
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
 django_heroku.settings(locals())
 import os
 if 'ON_HEROKU' in os.environ:
     ALLOWED_HOSTS.append('kreativmedperler.herokuapp.com')
     import dj_database_url
-    DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
+    DATABASES = {'default': dj_database_url.config(default='postgres://kreativmedperler.herokuapp.com')}
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATIC_URL = '/static/'
     STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
