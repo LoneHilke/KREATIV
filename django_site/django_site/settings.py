@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import django_heroku
+import os
 from pathlib import Path
 from environ import Env
 import urllib.parse as up
@@ -94,6 +95,7 @@ DATABASES = {
         "PORT": 5432,
         'CONN_MAX_AGE': 500,
     }
+       
 }
 
 
@@ -141,7 +143,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = BASE_DIR / 'uploads'
 MEDIA_URL = '/files/'
 
-DATABASE_URL = os.environ['https://data.heroku.com/dataclips/sfhsmtycorkbturcbfugalwwdqpo']
+#DATABASE_URL = os.environ['https://data.heroku.com/dataclips/sfhsmtycorkbturcbfugalwwdqpo']
+DATABASE_URL = os.environ['DATABASE_URL']
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
